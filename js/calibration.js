@@ -1,5 +1,8 @@
+var CountTime = 0;
 var PointCalibrate = 0;
 var CalibrationPoints = {};
+var i = 0;
+var intervalId;
 
 /**
  * Clear the canvas and the calibration button.
@@ -42,35 +45,51 @@ $(document)
   .ready(function () {
     ClearCanvas();
     helpModalShow();
+    // $(".Calibration").on("mousedown", function (e) {
     $(".Calibration").mousedown(function (e) {
       intervalId = setInterval(function () {
         console.log(i++);
         {
-          var id = $(this).attr("id");
-
+          var id = $(e.target).attr("id");
+          if (i == 1) {
+            CalibrationPoints[id] = 0;
+          }
           if (!CalibrationPoints[id]) {
             // initialises if not done
             CalibrationPoints[id] = 0;
           }
           CalibrationPoints[id]++; // increments values
 
-          var timeoutId = setTimeout(function () {
-            if (CalibrationPoints[id] >= 1) {
-              $(this).css("background-color", "Green");
-              $(this).prop("disabled", true);
-              PointCalibrate++;
-            }
-          });
-          $(".Calibration").mouseup(function () {
-            clearTimeout(timeoutId);
-          });
+          // CalibrationPoints[id]++;
+          // var timeoutId = setTimeout(function () {
+          //   if (CalibrationPoints[id] >= 1) {
+          //     $(e.target).css("background-color", "Green");
+          //     $(e.target).prop("disabled", true);
+          //   }
+          // });
+          // $(".Calibration").mouseup(function () {
+          //   clearTimeout(timeoutId);
+          // });
+
+          if (CalibrationPoints[id] == 5) {
+            $(e.target).css("background-color", "Green");
+            $(e.target).prop("disabled", true);
+            i = 0;
+            PointCalibrate++;
+            CalibrationPoints[id] = 0;
+            console.log("Count", PointCalibrate);
+          } else if (CalibrationPoints[id] < 5) {
+            //Gradually increase the opacity of calibration points when click to give some indication to user.
+            var opacity = 0.2 * CalibrationPoints[id] + 0.2;
+            $(e.target).css("opacity", opacity);
+          }
 
           //Show the middle calibration point after all other points have been clicked.
           if (PointCalibrate >= 8) {
             $("#Pt5").show();
           }
 
-          if (PointCalibrate >= 5) {
+          if (PointCalibrate >= 9) {
             // last point is calibrated
             //using jquery to grab every element in Calibration class and hide them except the middle point.
             $(".Calibration").hide();
@@ -134,6 +153,7 @@ $(document)
   .mouseup(function () {
     clearInterval(intervalId);
     i = 0;
+    // CalibrationPoints[id] = 0;
   });
 
 /**
