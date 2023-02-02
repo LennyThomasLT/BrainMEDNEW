@@ -78,6 +78,7 @@ $(document)
             PointCalibrate++;
             CalibrationPoints[id] = 0;
             console.log("Count", PointCalibrate);
+            clearInterval(intervalId);
           } else if (CalibrationPoints[id] < 5) {
             //Gradually increase the opacity of calibration points when click to give some indication to user.
             var opacity = 0.2 * CalibrationPoints[id] + 0.2;
@@ -85,11 +86,11 @@ $(document)
           }
 
           //Show the middle calibration point after all other points have been clicked.
-          if (PointCalibrate >= 8) {
+          if (PointCalibrate == 8) {
             $("#Pt5").show();
           }
 
-          if (PointCalibrate >= 9) {
+          if (PointCalibrate == 9) {
             // last point is calibrated
             //using jquery to grab every element in Calibration class and hide them except the middle point.
             $(".Calibration").hide();
