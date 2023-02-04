@@ -34,8 +34,6 @@ video.addEventListener("ended", function () {
     );
     videoContent.setAttribute("src", sources[0]);
     audioContent.setAttribute("src", sources[0]);
-    videoContent.autoplay = true;
-    audioContent.autoplay = true;
     if (inputs.length === currentIndex - 1) {
       // add show button function
     }
