@@ -71,7 +71,7 @@ $(document)
           //   clearTimeout(timeoutId);
           // });
 
-          if (CalibrationPoints[id] == 1) {
+          if (CalibrationPoints[id] == 4) {
             $(e.target).css("background-color", "Green");
             $(e.target).prop("disabled", true);
             i = 0;
