@@ -63,7 +63,7 @@ $(document)
           }
           CalibrationPoints[id]++; // increments values
 
-          if (CalibrationPoints[id] == 4) {
+          if (CalibrationPoints[id] == 1) {
             $(e.target).css("background-color", "Green");
             $(e.target).prop("disabled", true);
             i = 0;
