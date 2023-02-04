@@ -38,7 +38,7 @@ function helpModalShow() {
 
 const showFixationPage = () => {
   $("#calibrator").hide();
-  $("#fixation").show();
+  $("#audio-player").show();
 };
 
 /**
