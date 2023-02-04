@@ -18,7 +18,8 @@ Instructions on use can be found in the README repository.
         <!-- <script src="./tensorflow.js"></script> -->
         <script src="./webgazer.js"></script>
     </head>
-    <body LANG="en-US" LINK="#0000ff" DIR="LTR" >
+    <body LANG="en-US" LINK="#0000ff" DIR="LTR" id="calibrator">
+    <div id="calibrator">
       <canvas id="plotting_canvas" width="500" height="500" style="cursor:crosshair;"></canvas>
 
         <script src="./node_modules/jquery/dist/jquery.min.js"></script>
@@ -81,9 +82,38 @@ Instructions on use can be found in the README repository.
           </div>
         </div>
 
-        <!-- Latest compiled JavaScript -->
-        <script src="./js/resize_canvas.js"></script>
-        <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    </div>
 
+    <!-- audio player -->
+    <div>
+  <div class="video-background">
+    <video
+      loop="false"
+      muted="false"
+      id="video-source"
+      volume="1"
+      type="video/mp4"
+    ></video>
+    <audio
+      allow="autoplay"
+      type="audio/mpeg"
+      id="audio-source"
+    ></audio>
+
+  </div>
+  <div>
+    <script>
+    </script>
+  </div>
+  <canvas
+    id="plotting_canvas"
+    width="500"
+    height="500"
+    style="cursor: crosshair"
+  ></canvas>
+    </div>
+
+  <script src="./js/resize_canvas.js"></script>
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     </body>
 </html>

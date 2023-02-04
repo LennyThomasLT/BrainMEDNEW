@@ -25,9 +25,9 @@ function PopUpInstruction() {
       cancel: false,
       confirm: true,
     },
-  }).then((isConfirm) => {
+  }).then((isConfirm) => 
     ShowCalibrationPoint();
-  });
+  );
 }
 /**
  * Show the help instructions right at the start.
@@ -35,6 +35,11 @@ function PopUpInstruction() {
 function helpModalShow() {
   $("#helpModal").modal("show");
 }
+
+const showFixationPage = () => {
+  $("#calibrator").hide();
+  $("#fixation").show();
+};
 
 /**
  * Load this function when the index page starts.
@@ -52,24 +57,13 @@ $(document)
         {
           var id = $(e.target).attr("id");
           if (i == 1) {
-            CalibrationPoints[id] = 0;
+            CalibrationPointsid = 0;
           }
           if (!CalibrationPoints[id]) {
             // initialises if not done
             CalibrationPoints[id] = 0;
           }
           CalibrationPoints[id]++; // increments values
-
-          // CalibrationPoints[id]++;
-          // var timeoutId = setTimeout(function () {
-          //   if (CalibrationPoints[id] >= 1) {
-          //     $(e.target).css("background-color", "Green");
-          //     $(e.target).prop("disabled", true);
-          //   }
-          // });
-          // $(".Calibration").mouseup(function () {
-          //   clearTimeout(timeoutId);
-          // });
 
           if (CalibrationPoints[id] == 4) {
             $(e.target).css("background-color", "Green");
@@ -117,8 +111,6 @@ $(document)
                 sleep(5000).then(() => {
                   webgazer.pause();
 
-                  //webgazer.setGazeListener(latestGazeData, elapsedTime);
-                  //webgazer.saveDataAcrossSessions(false);
                   stop_storing_points_variable(); // stop storing the prediction points
                   var past50 = webgazer.getStoredPoints(); // retrieve the stored points
                   var precision_measurement = calculatePrecision(past50);
@@ -137,6 +129,7 @@ $(document)
                     if (isConfirm) {
                       //clear the calibration & hide the last middle button
                       ClearCanvas();
+                      showFixationPage();
                     } else {
                       //use restart function to restart the calibration
                       document.getElementById("Accuracy").innerHTML =
@@ -158,7 +151,6 @@ $(document)
   .mouseup(function () {
     clearInterval(intervalId);
     i = 0;
-    // CalibrationPoints[id] = 0;
   });
 
 /**
@@ -173,8 +165,6 @@ function ShowCalibrationPoint() {
  * This function clears the calibration buttons memory
  */
 function ClearCalibration() {
-  // Clear data from WebGazer
-
   $(".Calibration").css("background-color", "yellow");
   $(".Calibration").css("opacity", 0.2);
   $(".Calibration").prop("disabled", false);
@@ -183,7 +173,4 @@ function ClearCalibration() {
   PointCalibrate = 0;
 }
 
-// sleep function because java doesn't have one, sourced from http://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-function sleep(time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
+const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));

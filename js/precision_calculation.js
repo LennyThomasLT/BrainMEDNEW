@@ -69,9 +69,7 @@ function calculatePrecisionPercentages(
  */
 function calculateAverage(precisionPercentages) {
   var precision = 0;
-  for (x = 0; x < 50; x++) {
-    precision += precisionPercentages[x];
-  }
+  for (x = 0; x < 50; x++) precision += precisionPercentages[x];
   precision = precision / 50;
   return precision;
 }
