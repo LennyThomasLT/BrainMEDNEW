@@ -25,9 +25,7 @@ function PopUpInstruction() {
       cancel: false,
       confirm: true,
     },
-  }).then((isConfirm) => 
-    ShowCalibrationPoint();
-  );
+  }).then((isConfirm) => ShowCalibrationPoint());
 }
 /**
  * Show the help instructions right at the start.
