@@ -48,6 +48,7 @@ $(document)
   .ready(function () {
     ClearCanvas();
     helpModalShow();
+    $("audio-player").hide();
     // $(".Calibration").on("mousedown", function (e) {
     $(".Calibration").mousedown(function (e) {
       intervalId = setInterval(function () {
